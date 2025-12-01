@@ -14,6 +14,8 @@
         tools:context=".ui.fragment.FragmentAlarm">
 
         <!-- Alarm List -->
+
+        <!-- Floating Add Alarm Button (like Google Clock) -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvAlarms"
             android:layout_width="0dp"
@@ -21,12 +23,14 @@
             android:clipToPadding="false"
             android:paddingBottom="100dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            tools:listitem="@layout/alarm_item" />
 
-        <!-- Floating Add Alarm Button (like Google Clock) -->
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabAddAlarm"
             android:layout_width="wrap_content"

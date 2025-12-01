@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_iem_alarm"
+        android:icon="@android:drawable/ic_lock_idle_alarm"
+        android:title="Alarm" />
+    <item
+        android:id="@+id/nav_item_stopwatch"
+        android:icon="@android:drawable/ic_lock_idle_alarm"
+        android:title="Stopwatch" />
+    <item
+        android:id="@+id/nav_item_settings"
+        android:icon="@android:drawable/ic_menu_preferences"
+        android:title="Settings" />
+</menu>
+
