@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
+        app:cardElevation="3dp"
+        app:cardUseCompatPadding="true"
+        app:cardCornerRadius="18dp"
+        app:strokeWidth="0dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="18dp">
+
+            <!-- TIME (e.g. 07:30) -->
+            <TextView
+                android:id="@+id/tvTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="07:30"
+                android:textSize="40sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.02"
+                android:textColor="@android:color/black"
+                tools:text="07:30"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- AM / PM -->
+            <TextView
+                android:id="@+id/tvAmPm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="AM"
+                android:textSize="16sp"
+                android:textColor="@android:color/darker_gray"
+                android:layout_marginStart="6dp"
+                tools:text="AM"
+                app:layout_constraintBottom_toBottomOf="@id/tvTime"
+                app:layout_constraintStart_toEndOf="@id/tvTime" />
+
+            <!-- SWITCH -->
+            <com.google.android.material.materialswitch.MaterialSwitch
+                android:id="@+id/switchAlarm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:checked="true" />
+
+            <!-- LABEL (optional) -->
+            <TextView
+                android:id="@+id/tvLabel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Morning Workout"
+                android:textSize="15sp"
+                android:textColor="@android:color/darker_gray"
+                android:layout_marginTop="8dp"
+                tools:text="Morning Workout"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvTime"
+                app:layout_constraintEnd_toStartOf="@id/switchAlarm" />
+
+            <!-- REPEAT DAYS -->
+            <TextView
+                android:id="@+id/tvRepeatDays"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Mon Tue Wed Thu Fri"
+                android:textSize="14sp"
+                android:textColor="@android:color/black"
+                android:layout_marginTop="4dp"
+                tools:text="Mon Tue Wed Thu Fri"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvLabel"
+                app:layout_constraintEnd_toStartOf="@id/switchAlarm" />
+
+            <!-- NEXT ALARM TEXT -->
+            <TextView
+                android:id="@+id/tvNextAlarm"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Next: Tomorrow 7:30 AM"
+                android:textSize="13sp"
+                android:textColor="@android:color/holo_blue_dark"
+                android:layout_marginTop="8dp"
+                tools:text="Next: Tomorrow 7:30 AM"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvRepeatDays"
+                app:layout_constraintEnd_toStartOf="@id/switchAlarm"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+</layout>
