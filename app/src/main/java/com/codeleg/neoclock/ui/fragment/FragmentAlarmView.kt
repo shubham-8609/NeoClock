@@ -6,7 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.codeleg.neoclock.R
-class alarm_view_layout : Fragment() {
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+
+class FragmentAlarmView : BottomSheetDialogFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
