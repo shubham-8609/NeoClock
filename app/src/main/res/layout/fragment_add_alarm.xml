@@ -7,11 +7,11 @@
 
     </data>
 
-    <FrameLayout
+    <com.google.android.material.circularreveal.CircularRevealFrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="0dp"
-        tools:context=".ui.fragment.AlarmViewLayout">
+        tools:context=".ui.fragment.AddAlarmLayout">
 
         <ScrollView
             android:layout_width="match_parent"
@@ -54,8 +54,7 @@
                         android:id="@+id/etLabel"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:singleLine="true"
-                        tools:text="Morning Alarm" />
+                        android:singleLine="true" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -97,9 +96,9 @@
                         style="@style/Widget.Material3.Chip.Filter"
                         android:text="Wed" />
                     <com.google.android.material.chip.Chip
-                        android:id="@+id/chipThu"
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
+                        android:id="@+id/chipThu"
                         style="@style/Widget.Material3.Chip.Filter"
                         android:text="Thu" />
                     <com.google.android.material.chip.Chip
@@ -146,6 +145,7 @@
             </LinearLayout>
         </ScrollView>
 
-    </FrameLayout>
+    </com.google.android.material.circularreveal.CircularRevealFrameLayout>
 
 </layout>
+
