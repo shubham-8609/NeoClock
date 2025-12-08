@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
     </data>
 
     <FrameLayout
@@ -16,132 +15,211 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="16dp"
-            android:fillViewport="true">
+            android:fillViewport="true"
+            android:padding="0dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:gravity="center_horizontal"
-                android:paddingBottom="24dp">
+                android:padding="16dp"
+                android:gravity="center_horizontal">
 
-                <!-- Time Picker Card -->
-                <com.google.android.material.card.MaterialCardView
-                    android:layout_width="match_parent"
+                <!-- Time Row Like Google Clock -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:cardCornerRadius="18dp"
-                    app:cardElevation="4dp"
-                    android:padding="16dp"
-                    android:layout_marginBottom="20dp">
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_marginTop="12dp">
 
-                    <TimePicker
-                        android:id="@+id/timePicker"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-
-                </com.google.android.material.card.MaterialCardView>
-
-
-                <!-- Label Input -->
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Label (optional)"
-                    app:boxStrokeColor="?attr/colorPrimary">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etLabel"
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:id="@+id/tvHour"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:singleLine="true"
-                        tools:text="Morning Alarm" />
+                        android:textSize="48sp"
+                        android:textStyle="bold"
+                        tools:text="6:04" />
+                </LinearLayout>
 
-                </com.google.android.material.textfield.TextInputLayout>
-
-
-                <!-- Repeat Days Section -->
-                <TextView
-                    android:layout_width="match_parent"
+                <!-- Edit Button -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnEditTime"
+                    style="@style/Widget.Material3.Button.ElevatedButton"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:text="Repeat"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:text="Edit"
+                    android:layout_marginTop="12dp"
+                    app:cornerRadius="16dp" />
 
+                <!-- Days Row Like Google Clock -->
                 <com.google.android.material.chip.ChipGroup
                     android:id="@+id/chipGroupDays"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    app:singleSelection="false"
-                    app:selectionRequired="false"
-                    app:chipSpacing="8dp">
+                    android:layout_marginTop="16dp"
+                    android:orientation="horizontal"
+                    app:singleSelection="false">
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chipMon"
-                        android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         style="@style/Widget.Material3.Chip.Filter"
                         android:text="Mon" />
+
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chipTue"
-                        android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         style="@style/Widget.Material3.Chip.Filter"
                         android:text="Tue" />
+
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chipWed"
-                        android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         style="@style/Widget.Material3.Chip.Filter"
                         android:text="Wed" />
+
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chipThu"
-                        android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         style="@style/Widget.Material3.Chip.Filter"
                         android:text="Thu" />
+
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chipFri"
-                        android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         style="@style/Widget.Material3.Chip.Filter"
                         android:text="Fri" />
+
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chipSat"
-                        android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         style="@style/Widget.Material3.Chip.Filter"
                         android:text="Sat" />
+
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chipSun"
-                        android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         style="@style/Widget.Material3.Chip.Filter"
                         android:text="Sun" />
-
                 </com.google.android.material.chip.ChipGroup>
 
-
-                <!-- Enable Alarm Switch -->
-                <com.google.android.material.materialswitch.MaterialSwitch
-                    android:id="@+id/switchVibrate"
+                <!-- Alarm Name Row Like Google Clock -->
+                <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
-                    android:text="Vibrate"
-                    android:checked="true" />
+                    android:layout_marginTop="20dp"
+                    app:cardCornerRadius="18dp"
+                    app:cardElevation="0dp">
 
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="16dp">
 
-                <!-- Save Button -->
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnSave"
+<!--                        <ImageView-->
+<!--                            android:layout_width="24dp"-->
+<!--                            android:layout_height="24dp"-->
+<!--                            android:src="@drawable/ic_label" />-->
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:text="Alarm name"
+                            android:textSize="16sp" />
+
+                        <Space
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_weight="1" />
+
+                        <EditText
+                            android:id="@+id/etLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:hint="Alarm"
+                            android:background="@android:color/transparent"
+                            android:inputType="text"
+                            android:maxLines="1" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Vibrate Switch Row -->
+                <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:text="Save Alarm"
-                    app:cornerRadius="16dp" />
+                    android:layout_marginTop="12dp"
+                    app:cardCornerRadius="18dp"
+                    app:cardElevation="0dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="16dp">
+
+<!--                        <ImageView-->
+<!--                            android:layout_width="24dp"-->
+<!--                            android:layout_height="24dp"-->
+<!--                            android:src="@drawable/ic_vibration" />-->
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:text="Vibrate"
+                            android:textSize="16sp" />
+
+                        <Space
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_weight="1" />
+
+                        <com.google.android.material.materialswitch.MaterialSwitch
+                            android:id="@+id/switchVibrate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Save & Delete Buttons Row -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_marginTop="30dp">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnDelete"
+                        style="@style/Widget.Material3.Button.ElevatedButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Delete"
+                        app:cornerRadius="16dp" />
+
+                    <Space
+                        android:layout_width="16dp"
+                        android:layout_height="wrap_content" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnSave"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Save"
+                        app:cornerRadius="16dp" />
+                </LinearLayout>
 
             </LinearLayout>
         </ScrollView>

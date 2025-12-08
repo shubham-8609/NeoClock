@@ -53,7 +53,7 @@
 
             <!-- SWITCH -->
             <com.google.android.material.materialswitch.MaterialSwitch
-                android:id="@+id/switchAlarm"
+                android:id="@+id/switchEnable"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="true"
@@ -73,7 +73,7 @@
                 tools:text="Morning Workout"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvTime"
-                app:layout_constraintEnd_toStartOf="@id/switchAlarm" />
+                app:layout_constraintEnd_toStartOf="@id/switchEnable" />
 
             <!-- REPEAT DAYS -->
             <TextView
@@ -87,7 +87,7 @@
                 tools:text="Mon Tue Wed Thu Fri"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvLabel"
-                app:layout_constraintEnd_toStartOf="@id/switchAlarm" />
+                app:layout_constraintEnd_toStartOf="@id/switchEnable" />
 
             <!-- NEXT ALARM TEXT -->
             <TextView
@@ -101,7 +101,7 @@
                 tools:text="Next: Tomorrow 7:30 AM"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvRepeatDays"
-                app:layout_constraintEnd_toStartOf="@id/switchAlarm"
+                app:layout_constraintEnd_toStartOf="@id/switchEnable"
                 app:layout_constraintBottom_toBottomOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
