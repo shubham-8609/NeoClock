@@ -10,19 +10,18 @@
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="12dp"
         android:clickable="true"
         android:focusable="true"
         android:foreground="?attr/selectableItemBackground"
         app:cardElevation="3dp"
         app:cardUseCompatPadding="true"
-        app:cardCornerRadius="18dp"
+        app:cardCornerRadius="@dimen/_12sdp"
         app:strokeWidth="0dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="18dp">
+            android:padding="@dimen/_12sdp">
 
             <!-- TIME (e.g. 07:30) -->
             <TextView
@@ -83,7 +82,7 @@
                 android:text="Mon Tue Wed Thu Fri"
                 android:textSize="14sp"
                 android:textColor="@android:color/black"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="@dimen/_2sdp"
                 tools:text="Mon Tue Wed Thu Fri"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvLabel"
@@ -97,7 +96,7 @@
                 android:text="Next: Tomorrow 7:30 AM"
                 android:textSize="13sp"
                 android:textColor="@android:color/holo_blue_dark"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="@dimen/_5sdp"
                 tools:text="Next: Tomorrow 7:30 AM"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvRepeatDays"

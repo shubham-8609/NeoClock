@@ -19,10 +19,10 @@ class AlarmAdapter(
 
         fun bind(alarm: Alarm) = with(binding) {
 
-            tvTime.text = "%02d:%02d".format(alarm.hour, alarm.minute)
+            tvTime.text = "%02d:%02d".format(if(alarm.hour>12) alarm.hour-12 else alarm.hour , alarm.minute)
             tvLabel.text = alarm.label.ifEmpty { "Alarm" }
-
             switchEnable.isChecked = alarm.isEnabled
+            tvAmPm.text = if (alarm.hour>12) "PM" else "AM"
 
             // Toggle switch
             switchEnable.setOnCheckedChangeListener { _, isChecked ->

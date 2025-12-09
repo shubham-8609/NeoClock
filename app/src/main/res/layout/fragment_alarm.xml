@@ -10,12 +10,13 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="16dp"
+        android:padding="@dimen/_6sdp"
         tools:context=".ui.fragment.FragmentAlarm">
 
         <!-- Alarm List -->
 
         <!-- Floating Add Alarm Button (like Google Clock) -->
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvAlarms"
             android:layout_width="0dp"
@@ -39,10 +40,10 @@
             app:srcCompat="@android:drawable/ic_input_add"
             app:tint="@android:color/white"
             app:backgroundTint="?attr/colorPrimary"
-            app:maxImageSize="32dp"
+            app:maxImageSize="@dimen/_28sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_margin="16dp" />
+            android:layout_margin="@dimen/_8sdp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

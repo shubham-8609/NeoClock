@@ -76,21 +76,16 @@ class FragmentAlarm : Fragment() {
     private var isToggleProcessing = false
     fun onAlarmItemToggle(alarm: Alarm){
         if (isToggleProcessing) return
-
         isToggleProcessing = true
-
         alarmVM.updateEnabled(alarm.id, alarm.isEnabled)
-
         // release after some delay
         binding.root.postDelayed({
             isToggleProcessing = false
         }, 300)
-
-
     }
 
     fun onAlarmItemClick(alarm: Alarm){
-        Snackbar.make(binding.root , "Details" , Snackbar.LENGTH_SHORT).show()
+        FragmentAlarmView().show(parentFragmentManager ,"Alarm Details")
 
     }
     fun onAlarmItemLongPress(alarm: Alarm) {
