@@ -26,7 +26,7 @@ data class Alarm(
     val vibrate: Boolean = true,
 
     // Alarm tone URI or default
-    val ringtoneUri: String = "",
+//    val ringtoneUri: String = "",
 
     // Computed next trigger timestamp (System.currentTimeMillis())
     val nextTriggerTime: Long = 0L,
