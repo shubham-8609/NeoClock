@@ -8,7 +8,7 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:padding="0dp"
         tools:context=".ui.fragment.AlarmViewLayout">
 
@@ -33,7 +33,7 @@
                     android:gravity="center"
                     android:layout_marginTop="12dp">
 
-                    <TextView
+                    <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/tvHour"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -130,7 +130,7 @@
 <!--                            android:layout_height="24dp"-->
 <!--                            android:src="@drawable/ic_label" />-->
 
-                        <TextView
+                        <com.google.android.material.textview.MaterialTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="16dp"
@@ -172,7 +172,7 @@
 <!--                            android:layout_height="24dp"-->
 <!--                            android:src="@drawable/ic_vibration" />-->
 
-                        <TextView
+                        <com.google.android.material.textview.MaterialTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="16dp"
