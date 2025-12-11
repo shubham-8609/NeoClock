@@ -94,6 +94,7 @@
                 android:textSize="13sp"
                 android:layout_marginTop="@dimen/_5sdp"
                 tools:text="Next: Tomorrow 7:30 AM"
+                android:textColor="?attr/colorPrimary"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvRepeatDays"
                 app:layout_constraintEnd_toStartOf="@id/switchEnable"

@@ -65,6 +65,7 @@
                         android:id="@+id/chipMon"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        app:checkedIcon="@null"
                         style="@style/Widget.Material3.Chip.Filter"
                         android:text="Mon" />
 
@@ -72,11 +73,13 @@
                         android:id="@+id/chipTue"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        app:checkedIcon="@null"
                         style="@style/Widget.Material3.Chip.Filter"
                         android:text="Tue" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chipWed"
+                        app:checkedIcon="@null"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/Widget.Material3.Chip.Filter"
@@ -85,6 +88,7 @@
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chipThu"
                         android:layout_width="wrap_content"
+                        app:checkedIcon="@null"
                         android:layout_height="wrap_content"
                         style="@style/Widget.Material3.Chip.Filter"
                         android:text="Thu" />
@@ -93,12 +97,14 @@
                         android:id="@+id/chipFri"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        app:checkedIcon="@null"
                         style="@style/Widget.Material3.Chip.Filter"
                         android:text="Fri" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chipSat"
                         android:layout_width="wrap_content"
+                        app:checkedIcon="@null"
                         android:layout_height="wrap_content"
                         style="@style/Widget.Material3.Chip.Filter"
                         android:text="Sat" />
@@ -106,6 +112,7 @@
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chipSun"
                         android:layout_width="wrap_content"
+                        app:checkedIcon="@null"
                         android:layout_height="wrap_content"
                         style="@style/Widget.Material3.Chip.Filter"
                         android:text="Sun" />

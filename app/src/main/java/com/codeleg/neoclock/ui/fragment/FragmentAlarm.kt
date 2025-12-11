@@ -85,7 +85,9 @@ class FragmentAlarm : Fragment() {
     }
 
     fun onAlarmItemClick(alarm: Alarm){
-        FragmentAlarmView().show(parentFragmentManager ,"Alarm Details")
+        FragmentAlarmView.newInstance(alarm.id)
+            .show(parentFragmentManager, "Alarm Details")
+
 
     }
     fun onAlarmItemLongPress(alarm: Alarm) {
