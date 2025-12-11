@@ -12,25 +12,25 @@
         android:padding="0dp"
         tools:context=".ui.fragment.AlarmViewLayout">
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fillViewport="true"
-            android:padding="0dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="16dp"
-                android:gravity="center_horizontal">
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+
+                    android:layout_height="wrap_content">
 
                 <!-- Time Row Like Google Clock -->
                 <LinearLayout
                     android:layout_width="wrap_content"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:gravity="center"
                     android:layout_marginTop="12dp">
 
                     <com.google.android.material.textview.MaterialTextView
@@ -40,17 +40,29 @@
                         android:textSize="48sp"
                         android:textStyle="bold"
                         tools:text="6:04" />
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="wrap_content"
+                        android:id="@+id/tvAmPm"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:layout_marginStart="@dimen/_4sdp"
+                        android:layout_marginBottom="@dimen/_4sdp"
+                        android:text="AM"/>
                 </LinearLayout>
 
                 <!-- Edit Button -->
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnEditTime"
-                    style="@style/Widget.Material3.Button.ElevatedButton"
+                    style="@style/Widget.Material3.Button.OutlinedButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Edit"
                     android:layout_marginTop="12dp"
                     app:cornerRadius="16dp" />
+
+                </LinearLayout>
 
                 <!-- Days Row Like Google Clock -->
                 <com.google.android.material.chip.ChipGroup
@@ -66,7 +78,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:checkedIcon="@null"
-                        style="@style/Widget.Material3.Chip.Filter"
+                        style="@style/Widget.Material3.Chip.Filter.Elevated"
                         android:text="Mon" />
 
                     <com.google.android.material.chip.Chip
@@ -74,7 +86,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:checkedIcon="@null"
-                        style="@style/Widget.Material3.Chip.Filter"
+                        style="@style/Widget.Material3.Chip.Filter.Elevated"
                         android:text="Tue" />
 
                     <com.google.android.material.chip.Chip
@@ -82,7 +94,7 @@
                         app:checkedIcon="@null"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        style="@style/Widget.Material3.Chip.Filter"
+                        style="@style/Widget.Material3.Chip.Filter.Elevated"
                         android:text="Wed" />
 
                     <com.google.android.material.chip.Chip
@@ -90,7 +102,7 @@
                         android:layout_width="wrap_content"
                         app:checkedIcon="@null"
                         android:layout_height="wrap_content"
-                        style="@style/Widget.Material3.Chip.Filter"
+                        style="@style/Widget.Material3.Chip.Filter.Elevated"
                         android:text="Thu" />
 
                     <com.google.android.material.chip.Chip
@@ -98,7 +110,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:checkedIcon="@null"
-                        style="@style/Widget.Material3.Chip.Filter"
+                        style="@style/Widget.Material3.Chip.Filter.Elevated"
                         android:text="Fri" />
 
                     <com.google.android.material.chip.Chip
@@ -106,7 +118,7 @@
                         android:layout_width="wrap_content"
                         app:checkedIcon="@null"
                         android:layout_height="wrap_content"
-                        style="@style/Widget.Material3.Chip.Filter"
+                        style="@style/Widget.Material3.Chip.Filter.Elevated"
                         android:text="Sat" />
 
                     <com.google.android.material.chip.Chip
@@ -114,7 +126,7 @@
                         android:layout_width="wrap_content"
                         app:checkedIcon="@null"
                         android:layout_height="wrap_content"
-                        style="@style/Widget.Material3.Chip.Filter"
+                        style="@style/Widget.Material3.Chip.Filter.Elevated"
                         android:text="Sun" />
                 </com.google.android.material.chip.ChipGroup>
 
@@ -229,7 +241,6 @@
                 </LinearLayout>
 
             </LinearLayout>
-        </ScrollView>
 
     </FrameLayout>
 
