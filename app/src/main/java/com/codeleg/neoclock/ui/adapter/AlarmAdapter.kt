@@ -26,6 +26,7 @@ class AlarmAdapter(
 
             // Toggle switch
             switchEnable.setOnCheckedChangeListener { _, isChecked ->
+                // pass updated alarm with the new enabled state
                 onToggle(alarm.copy(isEnabled = isChecked))
             }
 

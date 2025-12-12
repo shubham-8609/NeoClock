@@ -27,7 +27,15 @@ interface AlarmDao {
     @Query("SELECT * FROM alarms WHERE id = :id LIMIT 1")
     suspend fun getAlarmById(id: Int) : Alarm?
 
+    // LiveData-backed single-alarm query for UI
+    @Query("SELECT * FROM alarms WHERE id = :id LIMIT 1")
+    fun getAlarmByIdLive(id: Int): LiveData<Alarm?>
+
     @Query("UPDATE alarms SET isEnabled = :enabled WHERE id = :id")
     suspend fun updateAlarmEnabled(id: Int, enabled: Boolean)
+
+    // Fetch enabled alarms for rescheduling
+    @Query("SELECT * FROM alarms WHERE isEnabled = 1")
+    suspend fun getEnabledAlarms(): List<Alarm>
 
 }

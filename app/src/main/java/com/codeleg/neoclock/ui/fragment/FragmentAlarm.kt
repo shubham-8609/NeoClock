@@ -1,13 +1,12 @@
 package com.codeleg.neoclock.ui.fragment
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import com.codeleg.neoclock.NeoClock
 import com.codeleg.neoclock.database.model.Alarm
 import com.codeleg.neoclock.databinding.FragmentAlarmBinding
@@ -17,8 +16,10 @@ import com.codeleg.neoclock.utils.DialogHelper
 import com.codeleg.neoclock.viewmodel.AlarmViewModel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.launch
 import java.time.LocalDateTime
 import java.time.ZoneId
+import com.codeleg.neoclock.alarm.AlarmScheduler
 
 class FragmentAlarm : Fragment() {
     var _binding: FragmentAlarmBinding? = null
@@ -28,7 +29,7 @@ class FragmentAlarm : Fragment() {
         val app = requireActivity().application as NeoClock
         ViewModelProvider(
             requireActivity(),
-            AlarmViewModelFactory(app.alarmRepo)
+            AlarmViewModelFactory(app.alarmRepo, requireActivity().application)
         )[AlarmViewModel::class.java]
     }
 
@@ -107,7 +108,9 @@ class FragmentAlarm : Fragment() {
 
         Snackbar.make(binding.root, "Alarm Deleted", Snackbar.LENGTH_LONG)
             .setAction("Undo") {
-                alarmVM.insertAlarm(alarm)
+                // Reinsert as a new alarm with a fresh id
+                val restored = alarm.copy(id = 0)
+                alarmVM.insertAlarm(restored)
                 Snackbar.make(binding.root, "Alarm Restored", Snackbar.LENGTH_SHORT).show()
             }
             .show()
@@ -116,26 +119,13 @@ class FragmentAlarm : Fragment() {
 
 
 
-
     fun createNewAlarm(hour:Int , minute: Int){
-         val nextTrigger = calculateNextTriggerTime(hour , minute)
-         alarmVM.insertAlarm(Alarm(hour = hour , minute = minute , nextTriggerTime = nextTrigger))
+         // Let AlarmScheduler compute and persist nextTriggerTime
+         val newAlarm = Alarm(hour = hour , minute = minute , isEnabled = true)
+
+         // insert and schedule after inserted id is returned via ViewModel
+         alarmVM.insertAlarm(newAlarm)
      }
-
-    @SuppressLint("NewApi")
-    private fun calculateNextTriggerTime(hour: Int, minute: Int): Long {
-        val now = LocalDateTime.now()
-        val alarmTime = now
-            .withHour(hour)
-            .withMinute(minute)
-            .withSecond(0)
-            .withNano(0)
-            .let { if (it.isBefore(now)) it.plusDays(1) else it }
-
-        return alarmTime.atZone(ZoneId.systemDefault())
-            .toInstant()
-            .toEpochMilli()
-    }
 
 
     override fun onDestroyView() {

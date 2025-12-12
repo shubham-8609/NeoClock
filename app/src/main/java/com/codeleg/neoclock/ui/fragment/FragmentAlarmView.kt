@@ -14,22 +14,16 @@ import com.codeleg.neoclock.ui.viewmodel.AlarmViewModelFactory
 import com.codeleg.neoclock.utils.DialogHelper
 import com.codeleg.neoclock.viewmodel.AlarmViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.google.android.material.snackbar.Snackbar
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlin.coroutines.coroutineContext
 
 class FragmentAlarmView() : BottomSheetDialogFragment() {
 
     private val alarmID: Int by lazy {
         arguments?.getInt(ARG_ID)?:-1
     }
-    private var isToggleProcessing = false
 
     var  _binding: FragmentAlarmViewBinding? = null
     val binding get() = _binding!!
-
 
 
     private var currentAlarm: Alarm? = null
@@ -38,7 +32,7 @@ class FragmentAlarmView() : BottomSheetDialogFragment() {
         val app = requireActivity().application as NeoClock
         ViewModelProvider(
             requireActivity(),
-            AlarmViewModelFactory(app.alarmRepo)
+            AlarmViewModelFactory(app.alarmRepo, requireActivity().application)
         )[AlarmViewModel::class.java]
     }
 
@@ -54,8 +48,9 @@ class FragmentAlarmView() : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        alarmVM.getAlarmById(alarmID){alarm ->
-            if(alarm!=null){
+        // Observe alarm LiveData
+        alarmVM.getAlarmLive(alarmID).observe(viewLifecycleOwner) { alarm ->
+            if (alarm != null) {
                 currentAlarm = alarm
                 bindAlarmData(alarm)
             }
@@ -74,18 +69,14 @@ class FragmentAlarmView() : BottomSheetDialogFragment() {
             saveAlarm()
         }
         binding.btnDelete.setOnClickListener {
-            alarmVM.deleteAlarm(currentAlarm!!)
-         dismiss()
+            currentAlarm?.let { alarmVM.deleteAlarm(it) }
+            dismiss()
         }
     }
 
     private fun changeVibrate(isChecked:Boolean){
-        if (isToggleProcessing) return
-        val updated = currentAlarm!!.copy(vibrate = isChecked)
+        val updated = currentAlarm?.copy(vibrate = isChecked)
         currentAlarm = updated
-        binding.root.postDelayed({
-            isToggleProcessing = false
-        }, 300)
     }
 
     private fun askNewTime() {
@@ -111,10 +102,8 @@ class FragmentAlarmView() : BottomSheetDialogFragment() {
 
         chips.forEach { (chip, dayIndex) ->
             chip.setOnCheckedChangeListener { _, _ ->
-                // update currentAlarm snapshot with selected days
-                CoroutineScope(Dispatchers.IO).launch {
-                    currentAlarm = currentAlarm?.copy(repeatDays = getSelectedDaysFromChips())
-                }
+                // update currentAlarm snapshot with selected days on main thread
+                currentAlarm = currentAlarm?.copy(repeatDays = getSelectedDaysFromChips())
             }
         }
 
@@ -169,7 +158,9 @@ class FragmentAlarmView() : BottomSheetDialogFragment() {
 
 private fun saveAlarm() {
     val newLabel = binding.etLabel.text.toString()
-    alarmVM.updateAlarm(currentAlarm!!.copy(isEnabled = true , label = newLabel))
+    val base = currentAlarm ?: return
+    val updated = base.copy(label = newLabel, isEnabled = true)
+    alarmVM.updateAlarm(updated)
     dismiss()
 }
 
