@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import com.codeleg.neoclock.NeoClock
 import com.codeleg.neoclock.database.model.Alarm
 import com.codeleg.neoclock.databinding.FragmentAlarmViewBinding
@@ -15,6 +16,8 @@ import com.codeleg.neoclock.viewmodel.AlarmViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kotlin.coroutines.coroutineContext
 
 class FragmentAlarmView() : BottomSheetDialogFragment() {
@@ -57,6 +60,7 @@ class FragmentAlarmView() : BottomSheetDialogFragment() {
                 bindAlarmData(alarm)
             }
         }
+        setupChipListeners()
         binding.tvHour.setOnClickListener {
             askNewTime()
         }
@@ -93,6 +97,41 @@ class FragmentAlarmView() : BottomSheetDialogFragment() {
         }
     }
 
+    private fun setupChipListeners() {
+        // When any chip changes, update currentAlarm.repeatDays immediately
+        val chips = listOf(
+            binding.chipMon to 1,
+            binding.chipTue to 2,
+            binding.chipWed to 3,
+            binding.chipThu to 4,
+            binding.chipFri to 5,
+            binding.chipSat to 6,
+            binding.chipSun to 0
+        )
+
+        chips.forEach { (chip, dayIndex) ->
+            chip.setOnCheckedChangeListener { _, _ ->
+                // update currentAlarm snapshot with selected days
+                CoroutineScope(Dispatchers.IO).launch {
+                    currentAlarm = currentAlarm?.copy(repeatDays = getSelectedDaysFromChips())
+                }
+            }
+        }
+
+    }
+
+    private fun getSelectedDaysFromChips(): List<Int> {
+        val selected = mutableListOf<Int>()
+        if (binding.chipSun.isChecked) selected.add(0)
+        if (binding.chipMon.isChecked) selected.add(1)
+        if (binding.chipTue.isChecked) selected.add(2)
+        if (binding.chipWed.isChecked) selected.add(3)
+        if (binding.chipThu.isChecked) selected.add(4)
+        if (binding.chipFri.isChecked) selected.add(5)
+        if (binding.chipSat.isChecked) selected.add(6)
+        return selected
+    }
+
     private fun applyNewTime(hour: Int, minute: Int) {
         val old = currentAlarm ?: return
         val updated = old.copy(hour = hour, minute = minute)
@@ -108,6 +147,16 @@ class FragmentAlarmView() : BottomSheetDialogFragment() {
         binding.etLabel.setText(alarm.label)
         binding.switchVibrate.isChecked = alarm.vibrate
         binding.tvAmPm.text = if(alarm.hour>12) "PM" else "AM"
+
+        lifecycleScope.launch {
+        binding.chipMon.isChecked = alarm.repeatDays.contains(1)
+        binding.chipTue.isChecked = alarm.repeatDays.contains(2)
+        binding.chipWed.isChecked = alarm.repeatDays.contains(3)
+        binding.chipThu.isChecked = alarm.repeatDays.contains(4)
+        binding.chipFri.isChecked = alarm.repeatDays.contains(5)
+        binding.chipSat.isChecked = alarm.repeatDays.contains(6)
+        binding.chipSun.isChecked = alarm.repeatDays.contains(0)
+        }
 
     }
 
